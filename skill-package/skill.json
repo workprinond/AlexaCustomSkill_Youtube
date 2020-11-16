@@ -1,0 +1,40 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "Alexa Hey Tube Skill",
+          "examplePhrases": [
+            "Alexa open hey tube"
+          ],
+          "keywords": [
+            "audio",
+            "streaming",
+            "youtube"
+          ],
+          "name": "alexaprinontube",
+          "description": "Alexa Skill to listen to youtube audio",
+          "smallIconUri": "https://alexademo.ninja/skills/logo-108.png",
+          "largeIconUri": "https://alexademo.ninja/skills/logo-512.png"
+        }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "Sample Testing Instructions.",
+      "category": "STREAMING_SERVICE",
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "interfaces": [
+          {
+            "type": "AUDIO_PLAYER"
+          }
+        ],
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-west-2:272677307914:function:ask-alexaprinontube-default-default-1605475209853"
+        }
+      }
+    },
+    "manifestVersion": "1.0"
+  }
+}
