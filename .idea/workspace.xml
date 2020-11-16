@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6db6875b-d268-48a4-864e-c32b9fa4e5b3" name="Default Changelist" comment="" />
+    <list default="true" id="6db6875b-d268-48a4-864e-c32b9fa4e5b3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ask/ask-states.json" beforeDir="false" afterPath="$PROJECT_DIR$/.ask/ask-states.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ask/lambda/build.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.ask/lambda/build.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ask/lambda/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.ask/lambda/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ask/lambda/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/.ask/lambda/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lambda/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/lambda/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lambda/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/lambda/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/skill-package/interactionModels/custom/en-US.json" beforeDir="false" afterPath="$PROJECT_DIR$/skill-package/interactionModels/custom/en-US.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/skill-package/skill.json" beforeDir="false" afterPath="$PROJECT_DIR$/skill-package/skill.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1kLJw6mmLyLa0nazAumGn4bIYXt" />
   <component name="ProjectViewState">
@@ -15,9 +30,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.16.1" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -32,6 +50,20 @@
       <workItem from="1605474177564" duration="799000" />
       <workItem from="1605478698922" duration="99000" />
       <workItem from="1605478893789" duration="144000" />
+      <workItem from="1605543717537" duration="125000" />
+      <workItem from="1605543869005" duration="243000" />
+      <workItem from="1605549327481" duration="723000" />
+      <workItem from="1605550836590" duration="369000" />
+      <workItem from="1605551718477" duration="181000" />
+      <workItem from="1605554109243" duration="324000" />
+      <workItem from="1605554801989" duration="483000" />
+      <workItem from="1605555733550" duration="10000" />
+      <workItem from="1605555863631" duration="297000" />
+      <workItem from="1605559293361" duration="1495000" />
+      <workItem from="1605561487277" duration="142000" />
+      <workItem from="1605561706248" duration="238000" />
+      <workItem from="1605562305843" duration="17000" />
+      <workItem from="1605562605176" duration="662000" />
     </task>
     <servers />
   </component>
@@ -39,9 +71,9 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="397" y="266" key="com.intellij.ide.util.TipDialog" timestamp="1605478897054">
+    <state x="397" y="266" key="com.intellij.ide.util.TipDialog" timestamp="1605562606092">
       <screen x="0" y="23" width="1440" height="822" />
     </state>
-    <state x="397" y="266" key="com.intellij.ide.util.TipDialog/0.23.1440.822@0.23.1440.822" timestamp="1605478897054" />
+    <state x="397" y="266" key="com.intellij.ide.util.TipDialog/0.23.1440.822@0.23.1440.822" timestamp="1605562606092" />
   </component>
 </project>

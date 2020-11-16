@@ -1,20 +1,17 @@
-// This sample demonstrates handling intents from an Alexa skill using the Alexa Skills Kit SDK (v2).
-// Please visit https://alexa.design/cookbook for additional examples on implementing slots, dialog management,
-// session persistence, api calls, and more.
-const Alexa = require('ask-sdk-core');
+const Alexa = require("ask-sdk");
 const search = require("youtube-search");
-const search = require("ytdl-core");
+const ytdl = require("ytdl-core");
+
+/* INTENT HANDLERS */
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
-        return (
-            Alexa.getRequestType(handlerInput.requestEnvelope) === "LaunchRequest"
-        );
+        return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
     },
     handle(handlerInput) {
         console.log("LaunchRequestHandler");
         const message =
-            "Welcome to Hey Tube. ask to play a video to start listening.";
+            "Welcome to Prinon Tube. ask to play a video to start chilling.";
         const reprompt = "You can say, play the Whitesnake, to begin.";
         return handlerInput.responseBuilder
             .speak(message)
@@ -22,12 +19,27 @@ const LaunchRequestHandler = {
             .getResponse();
     },
 };
+
+const CheckAudioInterfaceHandler = {
+    async canHandle(handlerInput) {
+        const audioPlayerInterface = (
+            (((handlerInput.requestEnvelope.context || {}).System || {}).device || {})
+                .supportedInterfaces || {}
+        ).AudioPlayer;
+        return audioPlayerInterface === undefined;
+    },
+    handle(handlerInput) {
+        return handlerInput.responseBuilder
+            .speak("Sorry, this skill is not supported on this device")
+            .withShouldEndSession(true)
+            .getResponse();
+    },
+};
+
 const GetVideoIntentHandler = {
     async canHandle(handlerInput) {
-        return (
-            Alexa.getRequestType(handlerInput.requestEnvelope) === "IntentRequest" &&
-            Alexa.getIntentName(handlerInput.requestEnvelope) === "GetVideoIntent"
-        );
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === "IntentRequest" &&
+            Alexa.getIntentName(handlerInput.requestEnvelope) === "GetVideoIntent";
     },
     handle(handlerInput) {
         console.log("GetVideo");
@@ -37,69 +49,63 @@ const GetVideoIntentHandler = {
             return controller.search(handlerInput, speechText);
         } else {
             return handlerInput.responseBuilder
-                .speak("You can say, play Whitesnake, to begin.")
+                .speak("You can say, play the Beatles, to begin.")
                 .getResponse();
         }
     },
 };
+
 const HelpIntentHandler = {
     canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === "IntentRequest" &&
+            Alexa.getIntentName(handlerInput.requestEnvelope) === "AMAZON.HelpIntent";
     },
     handle(handlerInput) {
-        const speakOutput = 'You can say hello to me! How can I help?';
+        const speakOutput =
+            "Welcome to the Prinontube. You can say, play video to begin.";
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
             .getResponse();
-    }
+    },
 };
 const CancelAndStopIntentHandler = {
     canHandle(handlerInput) {
-        return (
-            Alexa.getRequestType(handlerInput.requestEnvelope) === "IntentRequest" &&
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === "IntentRequest" &&
             (Alexa.getIntentName(handlerInput.requestEnvelope) ===
                 "AMAZON.CancelIntent" ||
                 Alexa.getIntentName(handlerInput.requestEnvelope) ===
                 "AMAZON.StopIntent" ||
                 Alexa.getIntentName(handlerInput.requestEnvelope) ===
-                "AMAZON.PauseIntent")
-        );
+                "AMAZON.PauseIntent");
     },
     handle(handlerInput) {
         console.log("CancelAndStopIntentHandler");
         return controller.stop(handlerInput, "Goodbye!");
     },
 };
-const SessionEndedRequestHandler = {
+const SystemExceptionHandler = {
     canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'SessionEndedRequest';
+        return handlerInput.requestEnvelope.request.type === "System.ExceptionEncountered";
     },
     handle(handlerInput) {
-        // Any cleanup logic goes here.
-        return handlerInput.responseBuilder.getResponse();
-    }
+        console.log("SystemExceptionHandler");
+        console.log(JSON.stringify(handlerInput.requestEnvelope, null, 2));
+        console.log(`System exception encountered: ${handlerInput.requestEnvelope.request.reason}`
+        );
+    },
 };
 
-// The intent reflector is used for interaction model testing and debugging.
-// It will simply repeat the intent the user said. You can create custom handlers
-// for your intents by defining them above, then also adding them to the request
-// handler chain below.
-const IntentReflectorHandler = {
+const SessionEndedRequestHandler = {
     canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest';
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === "SessionEndedRequest";
     },
     handle(handlerInput) {
-        const intentName = Alexa.getIntentName(handlerInput.requestEnvelope);
-        const speakOutput = `You just triggered ${intentName}`;
-
-        return handlerInput.responseBuilder
-            .speak(speakOutput)
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
-            .getResponse();
-    }
+        console.log("SessionEndedRequestHandler");
+        // Any cleanup logic goes here.
+        return handlerInput.responseBuilder.getResponse();
+    },
 };
 
 // Generic error handling to capture any syntax or routing errors. If you receive an error
@@ -110,35 +116,20 @@ const ErrorHandler = {
         return true;
     },
     handle(handlerInput, error) {
-        console.log(`~~~~ Error handled: ${error.stack}`);
-        const speakOutput = `Sorry, I had trouble doing what you asked. Please try again.`;
+        console.log("ErrorHandler");
+        console.log(error);
+        console.log(`Error handled: ${error.message}`);
+        const message =
+            "Sorry, this is not a valid command. Please say help to hear what you can say.";
 
         return handlerInput.responseBuilder
-            .speak(speakOutput)
-            .reprompt(speakOutput)
+            .speak(message)
+            .reprompt(message)
             .getResponse();
-    }
+    },
 };
 
-const getAudioUrl = (videoId) => {
-    return new Promise((resolve, reject) => {
-        console.log(videoId);
-        ytdl.getInfo(videoId, (err, info) => {
-            if (err) {
-                console.log(err);
-                reject(err);
-            }
-            console.log(info.formats);
-            let format = ytdl.chooseFormat(info.formats, { quality: "140" });
-            if (format) {
-                console.log(format.url);
-                resolve(format.url);
-            } else {
-                reject(err);
-            }
-        });
-    });
-};
+/* HELPER FUNCTIONS */
 
 const controller = {
     async search(handlerInput, query) {
@@ -173,19 +164,56 @@ const controller = {
     },
 };
 
+const getAudioInfo = (query) => {
+    return new Promise((resolve, reject) => {
+        var opts = {
+            maxResults: 1,
+            key: process.env.YOUTUBE_API_KEY,
+            part: "id,snippet",
+            type: "video",
+        };
+
+        search(query, opts, function (err, results) {
+            if (err) {
+                reject(err);
+            }
+            resolve(results);
+        });
+    });
+};
+
+const getAudioUrl = (videoId) => {
+    return new Promise((resolve, reject) => {
+        console.log(videoId);
+        ytdl.getInfo(videoId, (err, info) => {
+            if (err) {
+                console.log(err);
+                reject(err);
+            }
+            console.log(info.formats);
+            let format = ytdl.chooseFormat(info.formats, { quality: "140" });
+            if (format) {
+                console.log(format.url);
+                resolve(format.url);
+            } else {
+                reject(err);
+            }
+        });
+    });
+};
+
 // The SkillBuilder acts as the entry point for your skill, routing all request and response
 // payloads to the handlers above. Make sure any new handlers or interceptors you've
 // defined are included below. The order matters - they're processed top to bottom.
 exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
+        CheckAudioInterfaceHandler,
         LaunchRequestHandler,
         GetVideoIntentHandler,
+        SystemExceptionHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
-        SessionEndedRequestHandler,
-        IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
-        ) 
-    .addErrorHandlers(
-        ErrorHandler,
-        )
+        SessionEndedRequestHandler
+    )
+    .addErrorHandlers(ErrorHandler)
     .lambda();

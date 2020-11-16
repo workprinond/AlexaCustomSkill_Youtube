@@ -3,17 +3,17 @@
     "publishingInformation": {
       "locales": {
         "en-US": {
-          "summary": "Alexa Hey Tube Skill",
+          "summary": "Alexa Prinon Tube Skill",
           "examplePhrases": [
-            "Alexa open hey tube"
+            "Alexa open prinon tube"
           ],
           "keywords": [
             "audio",
             "streaming",
             "youtube"
           ],
-          "name": "alexaprinontube",
-          "description": "Alexa Skill to listen to youtube audio",
+          "name": "Prinon Tube",
+          "description": "Alexa Skill to listen to Prinontube audio",
           "smallIconUri": "https://alexademo.ninja/skills/logo-108.png",
           "largeIconUri": "https://alexademo.ninja/skills/logo-512.png"
         }

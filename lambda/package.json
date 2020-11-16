@@ -1,18 +1,19 @@
 {
-  "name": "hello-world",
+  "name": "Prinon Tube",
   "version": "1.1.0",
-  "description": "alexa utility for quickly building skills",
+  "description": "alexa for playing youtube skills",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Amazon Alexa",
+  "author": "Prinon Das",
   "license": "ISC",
   "dependencies": {
+    "ask-sdk": "^2.10.0",
     "ask-sdk-core": "^2.6.0",
     "ask-sdk-model": "^1.18.0",
     "aws-sdk": "^2.326.0",
     "youtube-search": "^1.1.4",
-    "ytdl-core": "^4.0.4"
+    "ytdl-core": "^4.0.5"
   }
 }
